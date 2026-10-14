@@ -1,0 +1,97 @@
+<div class="min-h-screen w-full bg-void flex items-center justify-center p-4 relative overflow-hidden select-none">
+  
+  <!-- Fondo de cuadrícula cibernética -->
+  <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ef4444_1px,transparent_1px)] [background-size:24px_24px]"></div>
+  
+  <!-- Iluminación Láser de Fondo (Crimson Bloom) -->
+  <div class="absolute -top-32 -left-32 w-96 h-96 bg-crimson-flare/15 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-crimson-shadow/20 blur-3xl pointer-events-none"></div>
+
+  <!-- Contenedor Principal Cyber-Industrial (0px border-radius) -->
+  <div class="w-full max-w-md bg-surface-layer-1 border border-outline-cyber p-8 relative z-10 shadow-2xl">
+    
+    <!-- Telemetría HUD Superior -->
+    <div class="flex items-center justify-between border-b border-outline-cyber pb-4 mb-6">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 bg-crimson-core animate-ping"></span>
+        <span class="w-2 h-2 bg-crimson-core"></span>
+        <span class="text-[11px] font-black tracking-[0.12em] text-steel-muted uppercase">
+          SYS.AUTHENTICATION // V1.0
+        </span>
+      </div>
+      <span class="text-[11px] font-black tracking-[0.12em] text-crimson-core bg-crimson-dark/40 px-2 py-0.5 border border-crimson-shadow">
+        ONLINE
+      </span>
+    </div>
+
+    <!-- Titular de la Aplicación -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-black tracking-tight text-chrome uppercase mb-2">
+        IKONIC <span class="text-crimson-core">CONTROL</span>
+      </h1>
+      <p class="text-sm text-steel-muted font-normal">
+        Acceso restringido para personal autorizado. Autentícate mediante Microsoft OAuth.
+      </p>
+    </div>
+
+    <!-- Mensaje de Error en caso de fallo -->
+    @if (errorMessage()) {
+      <div class="mb-6 p-3 bg-crimson-dark/50 border border-crimson-core text-chrome text-xs flex items-start gap-2">
+        <span class="text-crimson-core font-bold">[ERR]</span>
+        <span>{{ errorMessage() }}</span>
+      </div>
+    }
+
+    <!-- Botón Principal "EXECUTE" con Chamfer Cut de 45° -->
+    <button
+      (click)="loginWithMicrosoft()"
+      [disabled]="isLoading()"
+      type="button"
+      class="w-full h-14 bg-crimson-flare hover:bg-crimson-core text-white font-extrabold text-sm tracking-[0.06em] uppercase transition-all duration-200 flex items-center justify-center gap-3 chamfer-cta hover:crimson-glow-lg disabled:opacity-50 disabled:cursor-not-allowed mb-6 group cursor-pointer"
+    >
+      @if (!isLoading()) {
+        <svg class="w-5 h-5 fill-current transition-transform group-hover:scale-110" viewBox="0 0 23 23">
+          <path fill="#f35325" d="M1 1h10v10H1z"/>
+          <path fill="#81bc06" d="M12 1h10v10H12z"/>
+          <path fill="#05a6f0" d="M1 12h10v10H1z"/>
+          <path fill="#ffba08" d="M12 12h10v10H12z"/>
+        </svg>
+      } @else {
+        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+      }
+
+      <span>{{ isLoading() ? 'AUTENTICANDO...' : 'INICIAR SESIÓN CON MICROSOFT' }}</span>
+    </button>
+
+    <!-- Divisor Táctico -->
+    <div class="relative flex items-center justify-center my-6">
+      <div class="w-full border-t border-outline-cyber"></div>
+      <span class="absolute bg-surface-layer-1 px-3 text-[11px] font-black tracking-[0.12em] text-steel-muted uppercase">
+        SECURITY PROTOCOL
+      </span>
+    </div>
+
+    <!-- Indicadores de Seguridad -->
+    <div class="space-y-2 text-[11px] text-steel-muted">
+      <div class="flex justify-between items-center bg-surface-layer-2 p-2.5 border border-outline-cyber">
+        <span>DOMAIN ACCESSIBILITY</span>
+        <span class="text-chrome font-bold uppercase">AZURE ENTRA ID</span>
+      </div>
+      <div class="flex justify-between items-center bg-surface-layer-2 p-2.5 border border-outline-cyber">
+        <span>ENCRYPTION LEVEL</span>
+        <span class="text-chrome font-bold uppercase">JWT / RSA 256</span>
+      </div>
+    </div>
+
+    <!-- Pie de Página -->
+    <div class="mt-8 text-center">
+      <span class="text-[11px] font-semibold tracking-wider text-steel-muted/60 uppercase">
+        © IKONIC SYSTEM // ALL RIGHTS RESERVED
+      </span>
+    </div>
+
+  </div>
+</div>
